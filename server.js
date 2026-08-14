@@ -6,6 +6,8 @@ import cors from "cors";
 const PORT = 52741;
 const app = express();
 
+console.log(process.env.API_KEY);
+
 app.use(express.json());
 app.use(cors());
 
