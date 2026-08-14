@@ -3,10 +3,16 @@ import clipboard from "clipboardy";
 import {Bonjour} from "bonjour-service";
 import cors from "cors";
 
+process.loadEnvFile();
+
 const PORT = 52741;
 const app = express();
+const API_KEY = process.env.API_KEY;
 
-console.log(process.env.API_KEY);
+if (!API_KEY) {
+    console.warn("API_KEY is missing in .env file");
+    process.exit(1);
+}
 
 app.use(express.json());
 app.use(cors());
@@ -32,7 +38,7 @@ app.get('/', async (req, res) => {
 app.use((req, res, next) => {
     const key = req.header("x-api-key");
 
-    if (!key || key !== "test-key") {
+    if (!key || key !== API_KEY) {
         return res.status(401)
             .send({message: "Invalid or missing key"});
     }
