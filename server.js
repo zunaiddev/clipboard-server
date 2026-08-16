@@ -15,6 +15,7 @@ if (!API_KEY) {
 app.use(express.json());
 app.use(cors());
 
+//ToDo: upgrade to websocket
 app.use((req, res, next) => {
     const requestInfo = {
         ip: req.ip || req.socket.remoteAddress,
