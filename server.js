@@ -3,8 +3,6 @@ import clipboard from "clipboardy";
 import {Bonjour} from "bonjour-service";
 import cors from "cors";
 
-process.loadEnvFile();
-
 const PORT = 52741;
 const app = express();
 const API_KEY = process.env.API_KEY;
